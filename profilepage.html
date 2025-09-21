@@ -1,226 +1,301 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roshni V Patil - Profile</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Personal Portfolio</title>
+  <meta name="description" content="Personal portfolio showcasing skills, projects and resume." />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7fa;
-      color: #333;
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#6366f1; --glass: rgba(255,255,255,0.03);
+      --max-width:1100px; --radius:14px; --gap:18px; color-scheme: dark;
     }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial; background:linear-gradient(180deg,#071024 0%, #091226 100%); color:#e6eef8;}
+    a{color:var(--accent); text-decoration:none}
+    .container{max-width:var(--max-width);margin:36px auto;padding:24px}
 
-    /* Navbar */
-    nav {
-      background: #2c3e50;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-    }
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#22c1c3);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:white}
+    nav{display:flex;gap:12px;align-items:center}
+    .btn{padding:8px 12px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+    .btn:hover{transform:translateY(-2px)}
 
-    nav .logo {
-      font-size: 20px;
-      font-weight: bold;
-    }
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 340px;gap:28px;margin-top:28px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:var(--radius);padding:20px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    h1{margin:0;font-size:28px;line-height:1.05}
+    p.lead{color:var(--muted);margin-top:8px}
+    .cta-row{display:flex;gap:12px;margin-top:18px}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
+    /* Skills & Projects layout */
+    section{margin-top:20px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    .skills-list{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);font-size:14px}
 
-    nav ul li {
-      display: inline;
-    }
+    /* Projects */
+    .project{display:flex;flex-direction:column;gap:8px}
+    .project .meta{font-size:13px;color:var(--muted)}
+    .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+    /* Resume */
+    .resume{display:flex;flex-direction:column;gap:12px}
+    .resume .row{display:flex;gap:12px}
+    .tag{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:13px}
 
-    nav ul li a:hover {
-      color: #1abc9c;
-    }
+    /* Footer */
+    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
 
-    /* Layout */
-    .container {
-      display: flex;
-      padding: 20px;
-    }
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(0deg, rgba(2,6,23,0.6), rgba(2,6,23,0.6));padding:24px}
+    .modal.open{display:flex}
+    .modal-card{width:min(860px,calc(100% - 48px))}
 
-    .left {
-      flex: 2;
-      padding: 20px;
-    }
+    /* Responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;}.proj-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}}
+    @media (max-width:520px){.grid-3{grid-template-columns:1fr}.avatar{width:56px;height:56px}.container{padding:16px}}
 
-    .right {
-      flex: 1;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-align: center;
-      max-height: fit-content;
-    }
-
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #1abc9c;
-      margin-bottom: 15px;
-      object-fit: cover;
-    }
-
-    h2 {
-      border-bottom: 2px solid #1abc9c;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-      color: #2c3e50;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .skill-badge {
-      display: inline-block;
-      background: #1abc9c;
-      color: white;
-      padding: 5px 12px;
-      margin: 4px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    footer {
-      background: #2c3e50;
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-    }
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .gap{height:var(--gap)}
+    .center{display:flex;align-items:center;justify-content:center}
+    .shadow-sm{box-shadow:0 6px 18px rgba(2,6,23,0.5)}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">My Profile</div>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container" id="home">
-    <!-- Left Side -->
-    <div class="left">
-      <!-- Experience -->
-      <div class="section" id="about">
-        <h2>Experience</h2>
-        <p><strong>Digi9 Solution</strong> (June 2024 - August 2025)<br>
-          Software Engineer<br>
-          Delivered 2 major projects, 1 bug-fixing project, and 1 UI module within a year. Collaborated with cross-functional teams to build, optimize, and deploy full-stack applications. Enhanced efficiency by integrating AI features, third-party services, and cloud resources.</p>
-
-        <ul>
-          <li><b>Topper Academy</b> (ReactJS, Node.js, MongoDB)<br>
-          - Built interactive UI with ReactJS and Material-UI.<br>
-          - Implemented REST APIs to fetch and display content.<br>
-          - Debugged and optimized UI responsiveness.</li><br>
-
-          <li><b>Next Interview</b> (ReactJS, Node.js, Express, MongoDB, Clerk, TinyMCE, Firebase, AI)<br>
-          - Designed and implemented learning modules and subscription APIs.<br>
-          - Integrated Clerk authentication and TinyMCE editor.<br>
-          - Optimized navigation and UX.<br>
-          - Added AI-powered interactive learning.</li><br>
-
-          <li><b>Bug Fixing Project</b> (Next.js, Couchbase, GraphQL, AWS S3)<br>
-          - Resolved UI/backend bugs.<br>
-          - Fixed GraphQL query inconsistencies.<br>
-          - Optimized Couchbase integration.<br>
-          - Improved file handling with S3 debugging.</li><br>
-
-          <li><b>UI Enhancement</b> (ReactJS)<br>
-          - Designed and deployed responsive UI component.<br>
-          - Ensured cross-browser and mobile compatibility.</li>
-        </ul>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">RP</div>
+        <div>
+          <div style="font-weight:700">Roshni V Patil</div>
+          <div class="muted" style="font-size:13px">Software Engineer • React • Full-stack</div>
+        </div>
       </div>
+      <nav aria-label="Main navigation">
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#skills">Skills</a>
+        <a class="btn" href="#resume">Resume</a>
+        <button id="themeToggle" class="btn" aria-pressed="false">Toggle Theme</button>
+      </nav>
+    </header>
 
-      <!-- Education -->
-      <div class="section">
-        <h2>Education</h2>
-        <p><strong>Vagdevi PU College</strong> – Pre University College – Score: 69.89% (2020)</p>
-        <p><strong>Sir M Visvesvaraya College of Engineering, Raichur</strong> – B.E Engineering – CGPA: 7.6 (2024)</p>
-      </div>
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h1>Hi — I'm <span style="color:var(--accent)">Roshni V Patil</span></h1>
+          <p class="lead">Software Engineer passionate about building scalable full-stack applications, intuitive UIs, and integrating AI & cloud features to enhance efficiency.</p>
 
-      <!-- Skills -->
-      <div class="section">
-        <h2>Skills</h2>
-        <span class="skill-badge">React</span>
-        <span class="skill-badge">Redux</span>
-        <span class="skill-badge">Node.js</span>
-        <span class="skill-badge">Express</span>
-        <span class="skill-badge">MongoDB</span>
-        <span class="skill-badge">Next.js</span>
-        <span class="skill-badge">Couchbase</span>
-        <span class="skill-badge">GraphQL</span>
-      </div>
+          <div class="cta-row">
+            <a class="btn" href="#projects">View projects</a>
+            <button class="btn" id="contactBtn">Contact</button>
+            <a class="btn" href="#resume" id="downloadResume">Resume (Print)</a>
+          </div>
 
-      <!-- Projects -->
-      <div class="section">
-        <h2>Projects</h2>
-        <ul>
-          <li><b>Women's Safety App</b><br>
-            - Developed Android app with emergency alerts and live tracking.<br>
-            - Integrated emergency contact lists and police siren.</li><br>
+          <div class="gap"></div>
 
-          <li><b>Institutional Management System (QR-CODE)</b><br>
-            - Implemented QR-code based ID system for campus transactions.<br>
-            - Built UI with ReactJS and backend with Node.js.</li>
-        </ul>
-      </div>
+          <div class="grid-3">
+            <div class="card">
+              <h3 style="margin:0 0 8px 0">Experience</h3>
+              <div class="muted">Software Engineer at <strong>Digi9 Solution</strong><br/>June 2024 — Aug 2025</div>
+            </div>
+            <div class="card">
+              <h3 style="margin:0 0 8px 0">Availability</h3>
+              <div class="muted">Open to new opportunities • Remote friendly</div>
+            </div>
+            <div class="card">
+              <h3 style="margin:0 0 8px 0">Location</h3>
+              <div class="muted">India • IST (UTC+05:30)</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card shadow-sm">
+          <h3 style="margin-top:0">Contact</h3>
+          <p class="muted">Email: <a href="mailto:roshpatil2002@gmail.com">roshpatil2002@gmail.com</a></p>
+          <p class="muted">Phone: +91 7204326595</p>
+          <div class="gap"></div>
+          <div class="pill">
+            <div>
+              <div style="font-weight:600">Looking for collaborations</div>
+              <div class="muted" style="font-size:13px">Open to freelance & full-time roles</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="card" aria-labelledby="about-heading">
+        <h2 id="about-heading">About</h2>
+        <p class="muted">I am a software engineer experienced in React, Node.js, and full-stack development. Delivered multiple projects including AI-integrated learning platforms, bug-fixing in Next.js with Couchbase, and UI modules ensuring responsiveness and scalability.</p>
+
+        <div style="margin-top:12px">
+          <strong>Tech</strong>
+          <div class="skills-list" style="margin-top:8px">
+            <span class="skill">React</span>
+            <span class="skill">Redux</span>
+            <span class="skill">Node.js</span>
+            <span class="skill">Express</span>
+            <span class="skill">MongoDB</span>
+            <span class="skill">Next.js</span>
+            <span class="skill">Couchbase</span>
+            <span class="skill">GraphQL</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 style="margin-bottom:12px">Selected Projects</h2>
+        <div class="proj-grid">
+          <article class="card project">
+            <h3 style="margin:0">Women's Safety App</h3>
+            <div class="meta">Android • Firebase</div>
+            <p class="muted">Developed an Android app with emergency alerts, live tracking, and police siren. Integrated emergency contacts for safety.</p>
+          </article>
+
+          <article class="card project">
+            <h3 style="margin:0">Institutional Management System (QR-Code)</h3>
+            <div class="meta">ReactJS • Node.js</div>
+            <p class="muted">Built a QR-code based ID system for campus transactions with a ReactJS UI and Node.js backend.</p>
+          </article>
+
+          <article class="card project">
+            <h3 style="margin:0">Next Interview Platform</h3>
+            <div class="meta">ReactJS • Node.js • Express • MongoDB • Clerk • Firebase</div>
+            <p class="muted">Implemented learning modules, subscription APIs, and AI-powered interactive learning. Integrated Clerk authentication and TinyMCE editor.</p>
+          </article>
+
+          <article class="card project">
+            <h3 style="margin:0">Bug Fixing Project</h3>
+            <div class="meta">Next.js • Couchbase • GraphQL • AWS S3</div>
+            <p class="muted">Resolved backend and UI bugs, fixed GraphQL query inconsistencies, optimized Couchbase integration, and improved AWS S3 file handling.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="card">
+  <h2>Skills &amp; Tools</h2>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+    
+    <div style="flex:1;min-width:220px">
+      <h4 style="margin:0 0 8px 0">Frontend</h4>
+      <ul class="muted" style="margin:0 0 8px 16px">
+        <li>React, Redux, Next.js, TypeScript</li>
+        <li>Accessibility & performance</li>
+        <li>Testing (Jest, React Testing Library)</li>
+      </ul>
     </div>
+    
+    <div style="flex:1;min-width:220px">
+      <h4 style="margin:0 0 8px 0">Backend &amp; DevOps</h4>
+      <ul class="muted" style="margin:0 0 8px 16px">
+        <li>Node.js, Express, GraphQL</li>
+        <li>Databases: MongoDB, Couchbase</li>
+        <li>Docker, CI/CD pipelines</li>
+      </ul>
+    </div>
+    
+  </div>
+</section>
 
-    <!-- Right Side Profile -->
-    <!-- <div class="right">
-      <img src="https://via.placeholder.com/120" alt="Profile Photo" class="profile-img" id="profileImage">
-      <h3>Roshni V Patil</h3>
-      <p>206, Sugareshwara Towers<br>
-      Kallur Colony, Station Road<br>
-      Raichur, Karnataka - 584101</p>
-      <p>📞 7204326595<br>📧 roshpatil2002@gmail.com</p>
-      <button onclick="changeProfileImage()">Change Image</button>
-    </div> -->
+
+      <section id="resume" class="card">
+        <h2>Resume</h2>
+        <div class="resume">
+          <div><strong>Roshni V Patil</strong> — Software Engineer with experience in full-stack web applications.</div>
+          <div class="row">
+            <div style="flex:1">
+              <h4 style="margin:6px 0">Work Experience</h4>
+              <div class="muted">Software Engineer — Digi9 Solution (June 2024 — Aug 2025)</div>
+              <ul class="muted" style="margin-top:6px">
+                <li>Delivered 2 major projects, 1 bug-fixing project, and 1 UI module within a year.</li>
+                <li>Collaborated with teams to build, optimize, and deploy full-stack apps.</li>
+                <li>Integrated AI features, third-party services, and cloud resources.</li>
+              </ul>
+            </div>
+            <div style="width:220px">
+              <h4 style="margin:6px 0">Education</h4>
+              <div class="muted">Sir M Visvesvaraya College of Engineering — B.E. Engineering (CGPA: 7.6, 2024)</div>
+              <div class="muted">Vagdevi PU College — Score: 69.89% (2020)</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="muted">Last updated: Sep 21, 2025</div>
+            <div style="display:flex;gap:8px">
+              <button class="btn" id="printResume">Print / Download</button>
+              <a class="btn" href="mailto:roshpatil2002@gmail.com?subject=Opportunity">Hire me</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> Roshni V Patil — <span class="muted">Built with HTML, CSS & JavaScript</span></div>
+      </footer>
+    </main>
   </div>
 
-  <footer id="contact">
-    <p>📧 roshpatil2002@gmail.com | 📞 7204326595</p>
-    <p>&copy; 2025 Roshni V Patil</p>
-  </footer>
-
   <script>
-    function changeProfileImage() {
-      const image = document.getElementById("profileImage");
-      const newUrl = prompt("Enter new profile image URL:");
-      if (newUrl) image.src = newUrl;
-    }
-  </script>
+    // Populate year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Simple modal system for project details
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.getElementById('closeModal');
+    function openModal(html){ modalContent.innerHTML = html; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+    function hideModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+    closeModal.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) hideModal(); });
+
+    document.querySelectorAll('[data-open]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const pid = btn.getAttribute('data-open');
+        // Basic mapping of details (replace with real content)
+        const detail = {
+          'proj-1': '<h2>Admin Dashboard — SaaS</h2><p class="muted">Full details about architecture, tech used, responsibilities and outcomes. Include screenshots or links to the repository and live demo.</p>',
+          'proj-2': '<h2>Mock Interview Platform</h2><p class="muted">Real-time mock interview platform with AI integration and code execution sandbox.</p>',
+          'proj-3': '<h2>E-commerce Full-stack</h2><p class="muted">Headless commerce with custom invoicing and payment flows.</p>',
+          'proj-4': '<h2>Healthcare Booking Flow</h2><p class="muted">Complex scheduling system and payment integration.</p>'
+        }[pid] || '<h2>Project</h2><p class="muted">Details coming soon.</p>';
+        openModal(detail);
+      });
+    });
+
+    // Contact button opens mailto (or modal form if you prefer)
+    document.getElementById('contactBtn').addEventListener('click', ()=>{
+      window.location.href = 'mailto:you@example.com?subject=Hello%20—%20I%20saw%20your%20portfolio';
+    });
+
+    // Print / download resume triggers print dialog
+    document.getElementById('printResume').addEventListener('click', ()=>{ window.print(); });
+    document.getElementById('downloadResume').addEventListener('click', (e)=>{ e.preventDefault(); window.print(); });
+
+    // Theme toggle (light/dark simple)
+    document.getElementById('themeToggle').addEventListener('click', (e)=>{
+      const pressed = e.currentTarget.getAttribute('aria-pressed') === 'true';
+      e.currentTarget.setAttribute('aria-pressed', String(!pressed));
+      if(!pressed){ document.documentElement.style.setProperty('--bg', '#f8fafc'); document.documentElement.style.setProperty('--card','#ffffff'); document.documentElement.style.setProperty('--muted','#475569'); document.documentElement.style.setProperty('--accent','#4f46e5'); document.body.style.color='#071024'; document.body.style.background = 'linear-gradient(180deg,#f8fafc,#eef2ff)'; }
+      else { document.documentElement.style.removeProperty('--bg'); document.documentElement.style.removeProperty('--card'); document.documentElement.style.removeProperty('--muted'); document.documentElement.style.removeProperty('--accent'); document.body.style.color=''; document.body.style.background='linear-gradient(180deg,#071024 0%, #091226 100%)'; }
+    });
+
+    // Keyboard accessibility: close modal with Escape
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hideModal(); });
+
+    // Small enhancement: focus outline for keyboard users
+    (function(){
+      function handleFirstTab(e) {
+        if(e.key==='Tab'){
+          document.body.classList.add('show-focus');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    }());
+  </script>
 </body>
 </html>
