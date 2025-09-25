@@ -118,7 +118,7 @@
         <aside class="card shadow-sm">
           <h3 style="margin-top:0">Contact</h3>
           <p class="muted">Email: <a href="mailto:roshpatil2002@gmail.com">roshpatil2002@gmail.com</a></p>
-          <p class="muted">Phone: +91 7204326595</p>
+          <p class="muted">Phone: <a href="tel:+917204326595">+91 7204326595</a></p>
           <div class="gap"></div>
           <div class="pill">
             <div>
@@ -267,9 +267,11 @@
     });
 
     // Contact button opens mailto (or modal form if you prefer)
-    document.getElementById('contactBtn').addEventListener('click', ()=>{
-      window.location.href = 'mailto:you@example.com?subject=Hello%20—%20I%20saw%20your%20portfolio';
-    });
+document.getElementById('contactBtn').addEventListener('click', ()=>{
+  window.location.href = 'tel:+917204326595';
+});
+
+    
 
     // Print / download resume triggers print dialog
     document.getElementById('printResume').addEventListener('click', ()=>{ window.print(); });
